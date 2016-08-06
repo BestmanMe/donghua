@@ -1,0 +1,40 @@
+
+//变量的作用域
+//运用变量之后，首先在同一级查找变量如果没有，就跳出到上一级继续查找，同一级中最后定义的变量生效
+//变量最大的好处就是可以修改一项 影响到所有使用此变量的属性
+//!important  提高css样式优先级
+//！important   可以覆盖 行间的样式
+//在 less中和important结合使用，是这个类中所有样式都具有important属性
+//
+
+#wrap{
+    width:@vh;
+    height: 200px;
+    background: @nlu;
+    @vh:200px;
+    //.border
+    //.borderRadius(30px);
+    .borr
+}
+@nlu:red;
+//对于颜色使用乘法的时候，注意不要超出
+
+
+@nima:width:300px;
+
+
+.border{
+    border-top: 20px #666 solid;
+    border-bottom: 20px #aaaaaa solid;
+}
+.borderRadius(@radius){
+    border-radius: @radius;
+}
+
+
+@borr(@rr:5px){
+    border-radius: @rr;
+}
+
+
+
