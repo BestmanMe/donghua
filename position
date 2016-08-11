@@ -1,0 +1,219 @@
+移动端开发仿app头部底部固定设置position:fixed，android2.2以上已经实现。但是在ios8以下系统，当小键盘激活时，都会出现位置浮动问题。如图：
+
+ios position:fixed 兼容
+如何解决：
+查阅资料之后想到一下几种解决方法
+1，使用position：absolute模拟
+<script type="text/JavaScript">
+
+    window.onscroll=function(){
+
+    $(".fixed").css("top",$(window).scrollTop());
+
+   $(".foot").css("top",$(window).scrollTop()+$(window).height());
+
+}
+
+</script>
+问题来了：滑动页面时头部底部div会有明显的抖动。
+2，判断当前获得焦点元素是input则隐藏div改为position：absolute
+<body onload=setInterval("a()",500)>
+<script type="text/JavaScript">
+
+  function a(){
+
+    if(document.activeElement.tagName == 'INPUT'){    
+
+      $(".fixed").css({'position': 'absolute','top':'0'}); 
+
+       } else {  
+
+         $(".fixed").css('position', 'fixed');  
+
+        }
+
+      }
+
+  </script>
+问题来了:不停监控dom，消耗资源。如果input个数较少，可在input里面添加onfocus事件好一些。但是如果是底部固定div此方法好像不太给力。
+3，插件iscroll.js个人感觉不是很好用。可能方法不对，jQuery Mobile  没尝试，感觉会增负担。
+4，重点来了：
+只需要在中间部分外层div添加css样式position:fixed;top:50px; bottom:50px;overflow:scroll;就可以实现效果，无需插件。可拷贝下面代码运行。
+<!DOCTYPE html>
+
+<html lang="zh_cmn">
+
+<head>
+
+<meta charset=utf-8 />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+<title></title>
+
+<style>
+
+.head,.foot{position:fixed;left:0;height:38px;line-height:38px;width:100%;background-color:#99CC00;}
+
+.head{top:0;}
+
+.foot{bottom:0;}
+
+.main{position:fixed;top:38px;bottom:38px;width:100%;overflow:scroll;background-color:#BABABA;}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="head">顶部固定区域</header>
+
+<article class="main"  id="wrapper">  
+
+    <div>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+    <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+     <p>当内容欲出隐藏时，灰色区域可上下拖动</p>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+        <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+  <input type="text" value="" class="inputtext"> <br>
+
+  <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+   <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+     <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+    <input type="text" value="" class="inputtext"> <br>
+
+     content <br>
+
+    content <br>
+
+    content <br>
+
+    content <br>
+
+    content <br>
+
+    content <br>
+
+    content <br>
+
+    content <br>
+
+    content <br>
+
+  </div>
+
+</article>
+
+<footer class="foot">底部固定区域</footer>
+
+</body>
+
+</html>
+当小键盘出现时头部、底部自动跳到页面最顶端、最底端。键盘隐藏时又会固定在头部，底部。顿时感觉开朗了
