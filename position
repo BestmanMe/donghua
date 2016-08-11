@@ -1,4 +1,4 @@
-移动端开发仿app头部底部固定设置position:fixed，android2.2以上已经实现。但是在ios8以下系统，当小键盘激活时，都会出现位置浮动问题。如图：
+移动端开发仿app头部底部固定设置position:fixed，android2.2以上已经实现。但是在ios8以下系统，当小键盘激活时，都会出现位置浮动问题。
 
 ios position:fixed 兼容
 如何解决：
